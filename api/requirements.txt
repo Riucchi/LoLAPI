@@ -1,0 +1,3 @@
+djangorestframework
+pillow
+python-decouple

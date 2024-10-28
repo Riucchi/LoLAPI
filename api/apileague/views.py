@@ -10,12 +10,15 @@ class ChampionsView(APIView):
 
 
     def get(self, request):
-            try:
-                champions = Champion.objects.all()
-                serializer = ChampionSerializer(champions,many=True)
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            except:
-                return Response({'error':'Error al intentar serealizar los datos.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            if request.method == 'GET':
+                try:
+                    champions = Champion.objects.all()
+                    serializer = ChampionSerializer(champions,many=True)
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                except:
+                    return Response({'error':'Error al intentar serealizar los datos.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            else:
+                 return Response({"error": "Metodo no disponible."}, status=status.HTTP_403_FORBIDDEN)
     
 
     def post(self, request):

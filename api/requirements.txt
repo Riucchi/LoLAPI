@@ -1,3 +1,4 @@
 djangorestframework
 pillow
 python-decouple
+django-cors-headers
